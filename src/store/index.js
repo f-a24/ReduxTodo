@@ -21,7 +21,6 @@ const storageMiddleware = store => next => action => {
 
 const savedState = JSON.parse(localStorage.getItem('app-state'));
 export default function createStore(history) {
-  console.log(savedState);
   return reduxCreateStore(
     combineReducers({
       tasks: tasksReducer,

@@ -6,7 +6,6 @@ const initialState = {
 
 /* Reducer */
 export default function tasksReducer(state = initialState, action) {
-  console.log(state);
   switch (action.type) {
     case 'INPUT_TASK':
       return {

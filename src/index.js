@@ -8,6 +8,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import createBrowserHistory from 'history/createBrowserHistory';
 import { Route } from 'react-router-dom';
 import Error from './components/Error';
+import './index.css';
 
 /* historyインスタンス生成	 */
 const history = createBrowserHistory();
