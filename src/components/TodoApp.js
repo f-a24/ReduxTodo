@@ -1,4 +1,5 @@
 import React from 'react';
+import { compose, withStateHandlers } from 'recompose';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -9,6 +10,11 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { CSSTransitionGroup } from 'react-transition-group';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
 import './TodoApp.css';
 
 /* Component */
@@ -33,7 +39,33 @@ export default function TodoApp({ task, tasks, inputTask, addTask, redirectToErr
 			    }
 			  </CSSTransitionGroup>
 			</List>
-			<button onClick={_ => redirectToError()}>Error</button>
+			<button onClick={() => redirectToError()}>Error</button>
+			<Hoge />
 		</div>
 	);
 }
+
+const Hoge = compose(
+	withStateHandlers({
+		value: false
+	},
+	{
+		changeHandle: () => v => ({value: v})
+	})
+	)(({value, changeHandle}) => (
+      <ExpansionPanel expanded={value}>
+        <ExpansionPanelSummary>
+          <FormControlLabel
+            control={<Switch checked={value}
+            onChange={e => changeHandle(e.target.checked)} />}
+            label="Expansion Panel 1"
+          />
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Typography>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+            sit amet blandit leo lobortis eget.
+          </Typography>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+	));
